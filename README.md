@@ -167,13 +167,25 @@ Filebeat collects the changes done to the system files and logs.
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the ____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the install_elk.yml file to /etc/ansible/roles.
+- Update the hosts file to include...
+ [webservers]
+## alpha.example.org
+## beta.example.org
+## 192.168.1.100
+## 192.168.1.110
+10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+10.0.0.5 ansible_python_interpreter=/usr/bin/python3
+10.0.0.7 ansible_python_interpreter=/usr/bin/python3
+
+ [elk]
+10.2.0.4 ansible_python_interpreter=/usr/bin/python3
+
+- Run the playbook, and navigate to https://www.[elkboxpublicIP]:5607/app/kibana to check that the installation worked as expected.
 
 
 The playbook file is /etc/ansible/file/filebeat-configuration.yml.
 The file you update to make Ansible run is /etc/ansible/host and you add the webserver/ elk server to the IP addresses.
-The address to check that the Elk server is running is is www.139.91.248.66:5607/app/kibana
+The address to check that the Elk server is running is is www.[elkboxpublicIP]:5607/app/kibana
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
